@@ -42,5 +42,13 @@ public class Uri2990Application implements CommandLineRunner {
 			System.out.println(nickname);
 		}
 		
+		List<EmpregadoDeptDTO> result03 = repository.search03();
+		
+		
+		System.out.println("\nConsulta usando JPQL\n");
+		for(EmpregadoDeptDTO nickname : result03) {
+			System.out.println(nickname);
+		}
+		
 	}
 }

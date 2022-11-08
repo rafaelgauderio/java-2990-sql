@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import com.rafaeldeluca.uri2990.dto.EmpregadoDeptDTO;
 import com.rafaeldeluca.uri2990.entities.Empregado;
 import com.rafaeldeluca.uri2990.projections.EmpregadoDeptProjection;
 
@@ -31,5 +32,15 @@ public interface EmpregadoRepository extends JpaRepository<Empregado, Long> {
 			+ "	WHERE trabalha.cpf_emp IS NULL "
 			+ "	ORDER BY empregados.cpf")
 	List<EmpregadoDeptProjection> search02 ();
+	
+	
+	@Query("SELECT new com.rafaeldeluca.uri2990.dto.EmpregadoDeptDTO(objeto.cpf, objeto.enome, objeto.departamento.dnome) "
+			+ "FROM Empregado objeto "
+			+ "WHERE objeto.cpf NOT IN ( "
+			+ "	SELECT objeto.cpf "
+			+ "FROM Empregado objeto "
+			+ "INNER JOIN objeto.projetosOndeTrabalha) "
+			+ "ORDER BY objeto.cpf")
+	List<EmpregadoDeptDTO> search03 ();
 
 }
