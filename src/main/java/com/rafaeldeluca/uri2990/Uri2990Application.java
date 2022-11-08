@@ -34,5 +34,13 @@ public class Uri2990Application implements CommandLineRunner {
 			System.out.println(nickname);
 		}
 		
+		List<EmpregadoDeptProjection> list02 = repository.search02();
+		List<EmpregadoDeptDTO> resultDto02 = list02.stream().map(x -> new EmpregadoDeptDTO(x)).collect(Collectors.toList());
+		
+		System.out.println("\nConsulta usando LEFT JOIN\n");
+		for(EmpregadoDeptDTO nickname : resultDto02) {
+			System.out.println(nickname);
+		}
+		
 	}
 }
