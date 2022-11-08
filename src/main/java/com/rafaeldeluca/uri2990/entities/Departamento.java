@@ -25,6 +25,9 @@ public class Departamento {
 	@JoinColumn(name = "cpf_gerente")
 	private Empregado gerente;
 	
+	@OneToMany(mappedBy = "departamento")
+	private List<Projeto> projetos = new ArrayList<>(); 
+	
 	public Departamento() {
 	}
 
@@ -55,4 +58,10 @@ public class Departamento {
 	public List<Empregado> getEmpregados() {
 		return empregados;
 	}
+
+	public List<Projeto> getProjetos() {
+		return projetos;
+	}
+	
+	
 }

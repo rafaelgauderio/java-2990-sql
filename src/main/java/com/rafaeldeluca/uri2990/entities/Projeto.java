@@ -51,4 +51,7 @@ public class Projeto {
 	public void setDepartamento(Departamento departamento) {
 		this.departamento = departamento;
 	}
+	
+	
+	
 }
